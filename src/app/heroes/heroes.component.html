@@ -1,5 +1,15 @@
-<!-- The HeroesComponent is still a master/detail view. -->
+<!-- The HeroesComponent is still a master/detail view.  -->
 <h2>My Heroes</h2>
+<!-- To add a hero, this app only needs the hero's name. You can use an input element paired with an add button. -->
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+</div>
 <ul class="heroes">
 	<!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list. -->
 	<!-- heroes is the list from the HeroesComponent class. -->	
@@ -9,13 +19,14 @@
 <!-- hero holds the current hero object for each iteration through the list. -->
 <!-- binding in the template to announce the hero's name and show both id and name -->
 <!-- setup a two-way data binding between the <input> form element and the hero.name property.  -->
-		<span class="badge">{{hero.id}}</span>
-		{{hero.name}}
-	</a>
-	</li>
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button class="delete" title="delete hero"
+    (click)="delete(hero)">x</button>
+  </li>
 </ul>
 <!-- The two components will have a parent/child relationship. 
 The parent HeroesComponent will control the child HeroDetailComponent by sending it a new hero to display whenever the user selects a hero from the list. -->
  <!-- [hero]="selectedHero" is an Angular property binding. -->
 <!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
- <!-- You used a property binding to give the parent HeroesComponent control over the child HeroDetailComponent. -->
+ <!-- You used a property binding to give the parent HeroesComponent control over the child HeroDetailComponent.-->
