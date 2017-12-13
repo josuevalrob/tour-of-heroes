@@ -37,7 +37,7 @@ export class HeroService {
 	}
 	// Define the heroesUrl with the address of the heroes resource on the server.
 	private heroesUrl = 'api/heroes';  // URL to web api	
-
+	private testUrl = 'https://josuevalrob.com/tasks';
 /** Convert that method to use HttpClient */
 				// Add a getHeroes method to return the mock heroes.
 			// getHeroes(): Hero[] {
@@ -55,8 +55,9 @@ export class HeroService {
 	getHeroes (): Observable<Hero[]> {
 	// This particular HttpClient.get call returns an Observable<Hero[]>, 
 	// literally "an observable of hero arrays". In practice, it will only return a single hero array.
-	  return this.http.get<Hero[]>
-	  	(this.heroesUrl)
+	    const url = `${this.heroesUrl}`;
+
+	  return this.http.get<Hero[]>(url)
 	// HttpClient.get returns the body of the response as an untyped JSON object by default. 
 	// Applying the optional type specifier, <Hero[]> , gives you a typed result object.	  
 	    .pipe(
@@ -70,7 +71,6 @@ export class HeroService {
       	catchError(this.handleError('getHeroes', []))
     	);
 	}	
-
 
 /*** Get hero by id **/
 		// You've swapped http.get for of and the app keeps working without any other changes 
